@@ -21,12 +21,3 @@ async def private_receive_handler(Client, Message):
             await asyncio.sleep(30)
    except Exception as e:
       logger.exception(e)
-    await message.forward(chat_id=Config.BIN_CHANNEL)
-    logger.info("Forwarded a message from", from_channel, "to", to_channel)
-    await asyncio.sleep(30)
-except Exception as e:
-logger.exception(e)
-
-
-
-
