@@ -20,7 +20,7 @@ class channelforward(Client, Config):
     def __init__(self):
         super().__init__(
             name="CHANNELFORWARD",
-            session_string=self.session_string,
+            bot_token=self.BOT_TOKEN,
             api_id=self.API_ID,
             api_hash=self.API_HASH,
             workers=20,
