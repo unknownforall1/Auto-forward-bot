@@ -10,12 +10,11 @@ from pyrogram import filters
 from bot import channelforward
 from config import Config 
 
+from_channel = "-1002004110207"
+to_channel = "-1002110715677"
 @channelforward.on_message(filters.channel)
 async def forward(client, message):
     # Forwarding the messages to the channel
-   try:
-      for id in Config.CHANNEL:
-         from_channel, to_channel = id.split(":")
          if message.chat.id == int(from_channel):
             func = message.copy if Config.AS_COPY else message.forward
             await func(int(to_channel), Config.AS_COPY)
