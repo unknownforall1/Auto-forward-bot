@@ -19,6 +19,19 @@ logger = logging.getLogger(__name__)
 from bot import channelforward
 from config import Config
 LOG_CHANNEL=Config.LOG_CHANNEL
+from pyrogram import Client, filters
+import time
+from config import Config
+api_id = Config.API_ID
+api_hash = Config.API_HASH
+my_account = Config.session_string
+
+app = Client("my_account", api_id, api_hash)
+
+source_channel = -1001904263283  # replace with your source channel ID
+destination_channel = -1002071588087 # replace with your destination channel ID
+last_message_time = 0
+
 
 @channelforward.on_message(filters.channel & (filters.document | filters.video | filters.photo)  & ~filters.forwarded)
 async def forward(client, message):
@@ -46,3 +59,16 @@ async def pm_text(bot, message):
         chat_id=LOG_CHANNEL,
         text=f"<b>#𝐏𝐌_𝐌𝐒𝐆\n\nNᴀᴍᴇ : {user}\n\nID : {user_id}\n\nMᴇssᴀɢᴇ : {content}</b>"
     )
+
+
+
+
+
+@app.on_message(filters.channel & ~filters.forwarded)
+def forward_message(client, message):
+    global last_message_time
+    current_time = time.time()
+    if current_time - last_message_time < 5:
+        time.sleep(5)
+    client.forward_messages(destination_channel, message.chat.id, [message.message_id])
+    last_message_time = time.time()
