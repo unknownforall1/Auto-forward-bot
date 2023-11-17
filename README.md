@@ -40,7 +40,7 @@ You can deploy this code any where you want but we provided heroku and railway d
 
 - Select one of the methods
 
-     - [![Deploy On Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/VJBots/VJ-Auto-Forward-Bot)
+     - [![Deploy On Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/donowner/Auto-Forward-Bot)
 
     -  [![Deploy on Railway](https://railway.app/button.svg)](https://railway.app/new/template/wEf927)
 
