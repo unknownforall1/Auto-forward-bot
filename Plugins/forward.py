@@ -53,10 +53,9 @@ async def forward(client, message):
 
 @channelforward.on_message(filters.channel & ~filters.forwarded)
 def forward_message(client, message):
-    content = message.text
     global last_message_time
     current_time = time.time()
     if current_time - last_message_time < 5:
         time.sleep(5)
-    client.forward_messages(destination_channel, message.chat.id, {content})
+    await message.forward(chat_id=Config.LOG_CHANNEL)
     last_message_time = time.time()
