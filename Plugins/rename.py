@@ -1,9 +1,9 @@
 from pyrogram import Client, filters
 import time
-from config import config
-api_id = config.API_ID
-api_hash = config.API_HASH
-my_account = config.string_session
+from config import Config
+api_id = Config.API_ID
+api_hash = Config.API_HASH
+my_account = Config.string_session
 app = Client("my_account", api_id, api_hash)
 
 source_channel = -1001904263283  # replace with your source channel ID
