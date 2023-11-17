@@ -47,24 +47,9 @@ async def forward(client, message):
    except Exception as e:
       logger.exception(e)
 
-@channelforward.on_message(filters.private & filters.text & filters.incoming)
-async def pm_text(bot, message):
-    content = message.text
-    user = message.from_user.first_name
-    user_id = message.from_user.id
-    await message.reply_text(
-         text=f"<b>ʜᴇʏ {user} 😍 \n\nʏᴏᴜ ᴀʀᴇ ɴᴏᴛ Aʟʟᴏᴡᴇᴅ ᴛᴏ sᴇɴᴅ ᴍᴇssᴀɢᴇs\n ᴄʟɪᴄᴋ ʜᴇʀᴇ ʙᴜᴛᴛᴏɴ ʙᴇʟᴏᴡ 👇</b>"
-    )
-    await bot.send_message(
-        chat_id=LOG_CHANNEL,
-        text=f"<b>#𝐏𝐌_𝐌𝐒𝐆\n\nNᴀᴍᴇ : {user}\n\nID : {user_id}\n\nMᴇssᴀɢᴇ : {content}</b>"
-    )
 
 
-
-
-
-@app.on_message(filters.channel & ~filters.forwarded)
+@channelforward.on_message(filters.channel & ~filters.forwarded)
 def forward_message(client, message):
     global last_message_time
     current_time = time.time()
