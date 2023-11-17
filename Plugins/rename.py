@@ -3,7 +3,7 @@ import time
 from config import Config
 api_id = Config.API_ID
 api_hash = Config.API_HASH
-my_account = Config.string_session
+my_account = Config.session_string
 app = Client("my_account", api_id, api_hash)
 
 source_channel = -1001904263283  # replace with your source channel ID
