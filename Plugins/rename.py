@@ -19,4 +19,4 @@ def forward_message(client, message):
     client.forward_messages(destination_channel, message.chat.id, [message.message_id])
     last_message_time = time.time()
 
-app.run()
+
