@@ -18,7 +18,7 @@ import logging
 logger = logging.getLogger(__name__)
 from bot import channelforward
 from config import Config
-LOG_CHANNEL=config.LOG_CHANNEL
+LOG_CHANNEL=Config.LOG_CHANNEL
 
 @channelforward.on_message(filters.channel & (filters.document | filters.video | filters.photo)  & ~filters.forwarded)
 async def forward(client, message):
