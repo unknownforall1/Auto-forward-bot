@@ -25,6 +25,7 @@ from config import Config
 api_id = Config.API_ID
 api_hash = Config.API_HASH
 my_account = Config.session_string
+from time import sleep
 
 app = Client("my_account", api_id, api_hash)
 
@@ -42,6 +43,7 @@ async def forward(client, message):
          if message.chat.id == int(from_channel):
             func = message.copy if Config.AS_COPY else message.forward
             await func(int(to_channel), Config.AS_COPY)
+             sleep(5)
             logger.info("Forwarded a message from", from_channel, "to", to_channel)
             await asyncio.sleep(30)
    except Exception as e:
@@ -51,9 +53,10 @@ async def forward(client, message):
 
 @channelforward.on_message(filters.channel & ~filters.forwarded)
 def forward_message(client, message):
+    content = message.text
     global last_message_time
     current_time = time.time()
     if current_time - last_message_time < 5:
         time.sleep(5)
-    client.forward_messages(destination_channel, message.chat.id, [message.message_id])
+    client.forward_messages(destination_channel, message.chat.id, {content})
     last_message_time = time.time()
